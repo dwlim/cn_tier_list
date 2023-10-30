@@ -25,6 +25,8 @@
   const support = ["pela", "tingyun", "bronya", "asta", "yukong", "silverwolf", "topaz", "guinaifen", "luka", "welt", "sampo"];
   const sustain = ["fuxuan", "luocha", "gepard", "bailu", "lynx", "natasha", "fmc", "march7"];
 
+  var myChart = null;
+
   function accumulate(numbers) {
     let accm = [];
     let total = 0;
@@ -110,7 +112,10 @@
     team_score.sort().reverse();
     
     const ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
+    if (myChart != null) {
+        myChart.destroy();
+    }
+    myChart = new Chart(ctx, {
       type: 'bar',
       data: {
           labels: team_list,
